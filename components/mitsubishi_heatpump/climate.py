@@ -17,7 +17,8 @@ AUTO_LOAD = ["climate"]
 
 CONF_SUPPORTS = "supports"
 DEFAULT_CLIMATE_MODES = ["HEAT_COOL", "COOL", "HEAT", "DRY", "FAN_ONLY"]
-DEFAULT_FAN_MODES = ["AUTO", "DIFFUSE", "LOW", "MEDIUM", "MIDDLE", "HIGH"]
+#DEFAULT_FAN_MODES = ["AUTO", "DIFFUSE", "LOW", "MEDIUM", "MIDDLE", "HIGH"]
+DEFAULT_FAN_MODES = ["AUTO", "1", "2", "3", "4"]
 DEFAULT_SWING_MODES = ["OFF", "VERTICAL"]
 
 MitsubishiHeatPump = cg.global_ns.class_(
