@@ -516,3 +516,7 @@ void MitsubishiHeatPump::dump_state() {
     LOG_CLIMATE("", "MitsubishiHeatPump Climate", this);
     ESP_LOGI(TAG, "HELLO");
 }
+
+void Select::control(const std::string& value) {
+   ESP_LOGI(TAG, "  Select Vane: %s", value);
+}

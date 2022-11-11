@@ -51,7 +51,7 @@ static const float   ESPMHP_TEMPERATURE_STEP = 0.5; // temperature setting step,
 //   };
 
 //   class MitsubishiHeatPump : public PollingComponent, public climate::Climate {
-    class MitsubishiHeatPump : public PollingComponent,public Select, public climate::Climate {
+    class MitsubishiHeatPump : public PollingComponent, public Select, public climate::Climate {
 
     public:
 
@@ -72,6 +72,8 @@ static const float   ESPMHP_TEMPERATURE_STEP = 0.5; // temperature setting step,
             ESP_LOGI(TAG, "ESPHome MitsubishiHeatPump version %s",
                     ESPMHP_VERSION);
         }
+        // Select::
+        void control(const std::string& value);
 
         // Set the baud rate. Must be called before setup() to have any effect.
         void set_baud_rate(int);
@@ -108,6 +110,7 @@ static const float   ESPMHP_TEMPERATURE_STEP = 0.5; // temperature setting step,
         void set_remote_temperature(float);
 
     protected:
+
         // HeatPump object using the underlying Arduino library.
         HeatPump* hp;
 
