@@ -229,7 +229,7 @@ void MitsubishiHeatPump::control(const climate::ClimateCall &call) {
         this->swing_mode = *call.get_swing_mode();
         switch(*call.get_swing_mode()) {
             case climate::CLIMATE_SWING_OFF:
-                hp->setVaneSetting("AUTO");
+                hp->setVaneSetting(vane_selection);
                 updated = true;
                 break;
             case climate::CLIMATE_SWING_VERTICAL:
@@ -357,6 +357,7 @@ void MitsubishiHeatPump::hpSettingsChanged() {
      */
     this->publish_state();
 }
+
 
 /**
  * Report changes in the current temperature sensed by the HeatPump.
@@ -518,5 +519,6 @@ void MitsubishiHeatPump::dump_state() {
 }
 
 void Select::control(const std::string& value) {
-   ESP_LOGI(TAG, "  Select Vane: %s", value);
+   vane_selection = value;
+   ESP_LOGI(TAG, "  Select Vane: %s", vane_selection);
 }

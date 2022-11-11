@@ -142,6 +142,9 @@ static const float   ESPMHP_TEMPERATURE_STEP = 0.5; // temperature setting step,
         static void save(float value, ESPPreferenceObject& storage);
         static optional<float> load(ESPPreferenceObject& storage);
 
+        // Vane angle to be used when swing_mode is OFF.
+        std::string vane_selection = "AUTO";
+
     private:
         // Retrieve the HardwareSerial pointer from friend and subclasses.
         HardwareSerial *hw_serial_;
