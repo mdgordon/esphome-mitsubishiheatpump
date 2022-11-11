@@ -338,6 +338,7 @@ void MitsubishiHeatPump::hpSettingsChanged() {
      */
     vane_selection = currentSettings.vane;
     Select::publish_state(vane_selection);
+    ESP_LOGI(TAG, "Vane mode is: %s", vane_selection);
     if (strcmp(currentSettings.vane, "SWING") == 0) {
         this->swing_mode = climate::CLIMATE_SWING_VERTICAL;
     }
@@ -524,4 +525,6 @@ void Select::control(const std::string& value) {
    vane_selection = value;
    ESP_LOGI(TAG, "  Select Vane: %s", vane_selection);
    hp->setVaneSetting(vane_selection);
+   updated = true;
+
 }
