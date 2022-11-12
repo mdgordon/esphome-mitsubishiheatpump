@@ -18,7 +18,7 @@
  */
 
 #include "espmhp.h"
-using namespace esphome; 
+using namespace esphome;
 
 /**
  * Create a new MitsubishiHeatPump object
