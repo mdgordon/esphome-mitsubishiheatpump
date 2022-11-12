@@ -524,5 +524,4 @@ void Select::control(const std::string& value) {
    hp->setVaneSetting(vane_selection);
    updated = true;
    hp->update();
-
 }
