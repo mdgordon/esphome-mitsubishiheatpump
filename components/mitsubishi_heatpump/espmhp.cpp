@@ -526,5 +526,6 @@ void Select::control(const std::string& value) {
    ESP_LOGI(TAG, "  Select Vane: %s", vane_selection);
    hp->setVaneSetting(vane_selection);
    updated = true;
+   hp->update();
 
 }
