@@ -20,9 +20,6 @@
 #include "espmhp.h"
 using namespace esphome;
 
-void MitsubishiHeatPumpClimate::setup() {
-}
-
 /**
  * Create a new MitsubishiHeatPump object
  *
