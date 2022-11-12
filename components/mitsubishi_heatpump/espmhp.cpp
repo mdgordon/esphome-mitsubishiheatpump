@@ -522,7 +522,7 @@ void MitsubishiHeatPump::dump_state() {
 
 void Select::control(const std::string& value) {
    vane_selection = value;
-   ESP_LOGI(TAG, "  Select Vane: %s", vane_selection);
+   ESP_LOGI(TAG, "  Select::control - vane_selection: %s", vane_selection);
    hp->setVaneSetting(vane_selection);
    updated = true;
    hp->update();
