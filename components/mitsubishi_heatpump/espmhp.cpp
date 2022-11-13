@@ -520,9 +520,22 @@ void MitsubishiHeatPump::dump_state() {
     ESP_LOGI(TAG, "HELLO");
 }
 
-void VaneSelect::control(const std::string& value) {
-//   vane_selection = value;
-   ESP_LOGI(TAG, "  VaneSelect::control - value: %s", value);
+void VaneSelect::update() {
+   ESP_LOGI(TAG, "  VaneSelect::update()");
+   if (!this->f_.has_value())
+      return;
+
+   auto val = (*this->f_)();
+   if (!val.has_value())
+      return;
+
+   if (!this->has_option(*val)) {
+      ESP_LOGE(TAG, "Lambda returned an invalid option: %s", (*val).c_str());
+      return;
+   }
+
+   this->publish_state(*val);
+   //   vane_selection = value;
 //   hp->setVaneSetting(vane_selection);
 //   updated = true;
 //   hp->update();

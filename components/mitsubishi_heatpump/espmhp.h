@@ -41,11 +41,11 @@ static const uint8_t ESPMHP_MAX_TEMPERATURE = 31; // degrees C,
 static const float   ESPMHP_TEMPERATURE_STEP = 0.5; // temperature setting step,
                                                     // in degrees C
 
-class VaneSelect : public Select {
+class VaneSelect : public esphome::template_::TemplateSelect {
 
     public:
     // Select::
-    void control(const std::string& value);
+    void update() override;
 };
 
 class MitsubishiHeatPump : public PollingComponent, public climate::Climate {
