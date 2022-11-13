@@ -41,7 +41,14 @@ static const uint8_t ESPMHP_MAX_TEMPERATURE = 31; // degrees C,
 static const float   ESPMHP_TEMPERATURE_STEP = 0.5; // temperature setting step,
                                                     // in degrees C
 
-    class MitsubishiHeatPump : public PollingComponent, public Select, public climate::Climate {
+class VaneSelect : public Select {
+
+    public:
+    // Select::
+    void control(const std::string& value);
+};
+
+class MitsubishiHeatPump : public PollingComponent, public climate::Climate {
 
     public:
 
@@ -62,9 +69,6 @@ static const float   ESPMHP_TEMPERATURE_STEP = 0.5; // temperature setting step,
             ESP_LOGI(TAG, "ESPHome MitsubishiHeatPump version %s",
                     ESPMHP_VERSION);
         }
-        // Select::
-        void control(const std::string& value);
-
         // Set the baud rate. Must be called before setup() to have any effect.
         void set_baud_rate(int);
 
