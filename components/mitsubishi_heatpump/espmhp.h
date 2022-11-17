@@ -138,7 +138,7 @@ class MitsubishiHeatPump : public PollingComponent, public climate::Climate {
         static optional<float> load(ESPPreferenceObject& storage);
 
         // Vane angle to be used when swing_mode is OFF.
-        std::string vane_selection = "3";
+        char[20] vane_selection = "3";
 
     private:
         // Retrieve the HardwareSerial pointer from friend and subclasses.
