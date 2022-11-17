@@ -226,7 +226,7 @@ void MitsubishiHeatPump::control(const climate::ClimateCall &call) {
         this->swing_mode = *call.get_swing_mode();
         switch(*call.get_swing_mode()) {
             case climate::CLIMATE_SWING_OFF:
-                hp->setVaneSetting(vane_selection);
+                hp->setVaneSetting(*vane_selection);
                 updated = true;
                 ESP_LOGV(TAG, "control - requested vane mode is %s", vane_selection);
                 break;
