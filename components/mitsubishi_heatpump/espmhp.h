@@ -41,14 +41,6 @@ static const uint8_t ESPMHP_MAX_TEMPERATURE = 31; // degrees C,
 static const float   ESPMHP_TEMPERATURE_STEP = 0.5; // temperature setting step,
                                                     // in degrees C
 
-//class VaneSelect : public esphome::template_::TemplateSelect {
-//
-//    public:
-//    // Select::
-//    void update() override;
-//};
-//
-
 class MitsubishiHeatPump : public PollingComponent, public climate::Climate {
 
     public:
@@ -70,6 +62,7 @@ class MitsubishiHeatPump : public PollingComponent, public climate::Climate {
             ESP_LOGI(TAG, "ESPHome MitsubishiHeatPump version %s",
                     ESPMHP_VERSION);
         }
+
         // Set the baud rate. Must be called before setup() to have any effect.
         void set_baud_rate(int);
 
@@ -105,7 +98,6 @@ class MitsubishiHeatPump : public PollingComponent, public climate::Climate {
         void set_remote_temperature(float);
 
     protected:
-
         // HeatPump object using the underlying Arduino library.
         HeatPump* hp;
 
@@ -136,9 +128,6 @@ class MitsubishiHeatPump : public PollingComponent, public climate::Climate {
 
         static void save(float value, ESPPreferenceObject& storage);
         static optional<float> load(ESPPreferenceObject& storage);
-
-        // Vane angle to be used when swing_mode is OFF.
-        char vane_selection[20] = "3";
 
     private:
         // Retrieve the HardwareSerial pointer from friend and subclasses.

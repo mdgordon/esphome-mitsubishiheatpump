@@ -226,14 +226,12 @@ void MitsubishiHeatPump::control(const climate::ClimateCall &call) {
         this->swing_mode = *call.get_swing_mode();
         switch(*call.get_swing_mode()) {
             case climate::CLIMATE_SWING_OFF:
-                hp->setVaneSetting(vane_selection);
+                hp->setVaneSetting("AUTO");
                 updated = true;
-                ESP_LOGV(TAG, "control - requested vane mode is %s", vane_selection);
                 break;
             case climate::CLIMATE_SWING_VERTICAL:
                 hp->setVaneSetting("SWING");
                 updated = true;
-                ESP_LOGV(TAG, "control - requested vane mode is %s", "SWING");
                 break;
             default:
                 ESP_LOGW(TAG, "control - received unsupported swing mode request.");
@@ -335,9 +333,6 @@ void MitsubishiHeatPump::hpSettingsChanged() {
     /* ******** HANDLE MITSUBISHI VANE CHANGES ********
      * const char* VANE_MAP[7]        = {"AUTO", "1", "2", "3", "4", "5", "SWING"};
      */
-    //vane_selection = currentSettings.vane;
-    //Select::publish_state(vane_selection);
-    ESP_LOGI(TAG, "Vane mode is: %s", vane_selection);
     if (strcmp(currentSettings.vane, "SWING") == 0) {
         this->swing_mode = climate::CLIMATE_SWING_VERTICAL;
     }
@@ -359,7 +354,6 @@ void MitsubishiHeatPump::hpSettingsChanged() {
      */
     this->publish_state();
 }
-
 
 /**
  * Report changes in the current temperature sensed by the HeatPump.
@@ -519,24 +513,3 @@ void MitsubishiHeatPump::dump_state() {
     LOG_CLIMATE("", "MitsubishiHeatPump Climate", this);
     ESP_LOGI(TAG, "HELLO");
 }
-
-//void VaneSelect::update() {
-//   ESP_LOGI(TAG, "  VaneSelect::update()");
-//   if (!this->f_.has_value())
-//      return;
-//
-//   auto val = (*this->f_)();
-//   if (!val.has_value())
-//      return;
-//
-//   if (!this->has_option(*val)) {
-//      ESP_LOGE(TAG, "Lambda returned an invalid option: %s", (*val).c_str());
-//      return;
-//   }
-//
-//   this->publish_state(*val);
-//   //   vane_selection = value;
-////   hp->setVaneSetting(vane_selection);
-////   updated = true;
-////   hp->update();
-//}
