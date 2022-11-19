@@ -340,6 +340,7 @@ void MitsubishiHeatPump::hpSettingsChanged() {
         this->swing_mode = climate::CLIMATE_SWING_OFF;
     }
     ESP_LOGI(TAG, "Swing mode is: %i", this->swing_mode);
+    ESP_LOGI(TAG, "Vane mode is: %i", currentSettings.vane);
 
 
 
